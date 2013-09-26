@@ -117,13 +117,9 @@ char* task_dump(Task* t){
 			size_t i;
 			int buff[8];
 
-			/* Grab the digits  from the datestamp, below is the non-single line form for the algorithm
-			 * int num1 = ((int)(numb/pow(10,7-i)));
-			 * int num2 = ((int)(numb/pow(10,8-i)));
-			 *	tmp = (num1)-(num2)*10;
-			 */
+			//grab the digits  
 			for (i = 0; i < 8; i++)
-				buff[i] = ((int)(t->datestamp/pow(10,7-i)))-(((int)(t->datestamp/pow(10,8-i)))*10);
+			buff[i] = (t->datestamp / (unsigned int)pow(10,7-i)) % 10;
 		
 			//write the digits into a string buffer
 			char str[11];
